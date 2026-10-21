@@ -78,10 +78,11 @@ education = get_cv_data("education")
 
 # Load professional experience
 
-tab1, tab2, tab3 = st.tabs([
+tab1, tab2, tab3, tab4 = st.tabs([
     "💼 Experience & Projects",
     "🛠️ Skills",
-    "🎓 Education"
+    "🎓 Education",
+    "About me"
 ])
 
 with tab1:
@@ -105,6 +106,17 @@ with tab1:
                 for _, project in job_projects.iterrows():
                     st.markdown(f"**↗ {project['project']}**")
                     st.caption(project["description"])
+                    project_pages = {
+                        "Analytical Database": "pages/analytical_database.py",
+                        "Tableau Dashboards": "pages/tableau_dashboards.py",
+                        "Digital Solutions": "pages/techportal.py",
+                    }
+
+                    page = project_pages.get(project["project"])
+
+                    if page:
+                        if st.button("View project →", key=f"project_{project['id']}"):
+                            st.switch_page(page)
 
 # Load skills table
 with tab2:
@@ -127,3 +139,22 @@ with tab3:
             st.caption(
                 f"{degree['start_year']} – {degree['end_year']}"
             )
+
+# Load About me section
+with tab4:
+    st.header("About me")
+
+    col1, col2 = st.columns([2, 1], gap="large")
+
+    with col1:
+        st.subheader("Engineer by background. Data engineer by choice.")
+
+        st.write(
+            "I started in industrial management and production planning "
+            "before moving into data engineering. These days I work with "
+            "Python, SQL, analytics and digital tools — usually somewhere "
+            "between the technical and business sides of a problem."
+        )
+
+    with col2:
+        st.image("extra_files/IMG_2520.jpg", width=220)
