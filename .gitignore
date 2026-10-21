@@ -18,3 +18,6 @@ exploration.ipynb
 .vscode/
 
 *.deb
+
+# Files not needed for git
+extra_files/
