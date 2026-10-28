@@ -20,4 +20,3 @@ exploration.ipynb
 *.deb
 
 # Files not needed for git
-extra_files/

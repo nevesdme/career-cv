@@ -1,5 +1,6 @@
 import streamlit as st
-from database import load_table
+# from database import load_table
+from sample_database import load_table
 
 @st.cache_data(ttl=600)
 def get_cv_data(table_name):
