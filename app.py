@@ -1,5 +1,6 @@
 import streamlit as st
 from database import load_table
+from components import button_style
 
 @st.cache_data(ttl=600)
 def get_cv_data(table_name):
@@ -11,9 +12,19 @@ st.set_page_config(
     layout="wide"
 )
 
+button_style()
 
 st.html("""
-<div style="padding: 65px 0 45px 0;">
+<style>
+[class*="st-key-cvbox"] {
+    border-width: 2px !important;
+    border-color: #555555 !important;
+}
+</style>
+""")
+
+st.html("""
+<div style="padding: 65px 0 0px 0;">
     <p style="color: #8BB8E8; font-size: 13px; letter-spacing: 3px; margin-bottom: 20px;">
         DATA ENGINEERING / ANALYTICS / DIGITAL SOLUTIONS
     </p>
@@ -69,6 +80,7 @@ digraph {
 }
 """)
 
+st.space("small")
 
 # Load data from Azure SQL
 experience = get_cv_data("experience")
@@ -91,7 +103,7 @@ with tab1:
     for _, job in experience.sort_values(
         "start_year", ascending=False
     ).iterrows():
-        with st.container(border=True):
+        with st.container(border=True, key=f"cvbox_exp_{job['id']}"):
             st.markdown(f"### {job['role']}")
             st.markdown(f"**{job['company']}**")
             st.caption(f"{job['start_year']} — {job['end_year']}")
@@ -115,7 +127,7 @@ with tab1:
                     page = project_pages.get(project["project"])
 
                     if page:
-                        if st.button("View project →", key=f"project_{project['id']}"):
+                        if st.button("View project →", key=f"project_{project['id']}", type="primary"):
                             st.switch_page(page)
 
 # Load skills table
@@ -130,10 +142,10 @@ with tab2:
 with tab3:
     st.header("Education")
 
-    for _, degree in education.sort_values(
+    for i, degree in education.sort_values(
         "end_year", ascending=False
     ).iterrows():
-        with st.container(border=True):
+        with st.container(border=True, key=f"cvbox_edu_{i}"):
             st.subheader(degree["institution"])
             st.write(f"**{degree['programme']}**")
             st.caption(
