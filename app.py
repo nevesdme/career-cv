@@ -43,6 +43,21 @@ st.html("""
 </div>
 """)
 
+text_col, photo_col = st.columns([2, 1], gap="large", vertical_alignment="center")
+
+with text_col:
+    # Draft, to be rewritten
+    st.write(
+        "I spent 7 years at the biggest cable manufacturer in Portugal, planning "
+        "production lines and factories. In 2021 I moved to the Netherlands, "
+        "where I helped start the data team at a real estate developer and "
+        "did the technical data work: databases, Python ETL, Tableau "
+        "dashboards and other tools around them."
+    )
+
+with photo_col:
+    st.image("extra_files/IMG_2520.jpg", width=220)
+
 st.divider()
 
 st.markdown("**A CV with a backend.**")
@@ -110,11 +125,10 @@ if st.session_state.pop("scroll_to_tabs", False):
         height=0,
     )
 
-tab1, tab2, tab3, tab4 = st.tabs([
+tab1, tab2, tab3 = st.tabs([
     "💼 Experience & Projects",
     "🛠️ Skills",
     "🎓 Education",
-    "About me"
 ])
 
 with tab1:
@@ -172,21 +186,3 @@ with tab3:
                 f"{degree['start_year']} – {degree['end_year']}"
             )
 
-# Load About me section
-with tab4:
-    st.header("About me")
-
-    col1, col2 = st.columns([2, 1], gap="large")
-
-    with col1:
-        st.subheader("Engineer by background. Data engineer by choice.")
-
-        st.write(
-            "I started in industrial management and production planning "
-            "before moving into data engineering. These days I work with "
-            "Python, SQL, analytics and digital tools — usually somewhere "
-            "between the technical and business sides of a problem."
-        )
-
-    with col2:
-        st.image("extra_files/IMG_2520.jpg", width=220)
