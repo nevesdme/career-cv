@@ -19,11 +19,20 @@ def button_style():
     """)
 
 
+def back_button(key):
+    if st.button("← Back to CV", type="primary", key=key):
+        st.session_state["scroll_to_tabs"] = True
+        st.switch_page("app.py")
+
+
+def project_footer():
+    st.divider()
+    back_button("back_bottom")
+
+
 def project_header(title, subtitle):
     button_style()
-
-    if st.button("← Back to CV", type="primary"):
-        st.switch_page("app.py")
+    back_button("back_top")
 
     st.title(title)
     st.caption(subtitle)

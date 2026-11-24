@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as st_components
 from database import load_table
 from components import button_style
 
@@ -89,6 +90,25 @@ skills = get_cv_data("skills")
 education = get_cv_data("education")
 
 # Load professional experience
+
+# Coming back from a project page: scroll down to the tabs
+if st.session_state.pop("scroll_to_tabs", False):
+    st_components.html(
+        """
+        <script>
+        let tries = 0;
+        const timer = setInterval(() => {
+            const tabs = window.parent.document.querySelector('[data-testid="stTabs"]');
+            tries += 1;
+            if (tabs || tries > 50) {
+                clearInterval(timer);
+                if (tabs) tabs.scrollIntoView({behavior: "instant", block: "start"});
+            }
+        }, 100);
+        </script>
+        """,
+        height=0,
+    )
 
 tab1, tab2, tab3, tab4 = st.tabs([
     "💼 Experience & Projects",

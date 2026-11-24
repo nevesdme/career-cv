@@ -1,5 +1,5 @@
 import streamlit as st
-from components import project_header
+from components import project_header, project_footer
 
 st.set_page_config(
     page_title="Analytical Database",
@@ -79,3 +79,5 @@ with col_text:
     st.space("medium")
 
     st.image(f"{IMAGES_DIR}/Picture4.png", width=1050)
+
+project_footer()
