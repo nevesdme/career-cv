@@ -55,6 +55,20 @@ with text_col:
         "dashboards and other tools around them."
     )
 
+    st.write(
+        "What I like most is the part before the data. Talking to people, "
+        "understanding how they work and what they actually need, and then "
+        "figuring out how to structure the data so it helps them. Most people "
+        "know what they want to see, but not how the data behind it should "
+        "look. That's where I come in."
+    )
+
+    st.write(
+        "I'm now looking for my next step, as an employee or as a freelancer, "
+        "somewhere I can help a company turn its information into something "
+        "people actually use."
+    )
+
     st.markdown(
         "[LinkedIn ↗](https://www.linkedin.com/in/duarteneves)"
         "&nbsp;&nbsp;&nbsp;&nbsp;"
