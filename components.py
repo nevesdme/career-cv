@@ -2,9 +2,12 @@
 import streamlit as st
 
 
-def button_style():
+def page_style():
     st.html("""
     <style>
+    [data-testid="stElementToolbar"] {
+        display: none;
+    }
     button[data-testid="stBaseButton-primary"] {
         background-color: #555555;
         border-color: #555555;
@@ -31,7 +34,7 @@ def project_footer():
 
 
 def project_header(title, subtitle):
-    button_style()
+    page_style()
     back_button("back_top")
 
     st.title(title)

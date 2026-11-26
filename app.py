@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as st_components
 from database import load_table
-from components import button_style
+from components import page_style
 
 @st.cache_data(ttl=600)
 def get_cv_data(table_name):
@@ -13,7 +13,7 @@ st.set_page_config(
     layout="wide"
 )
 
-button_style()
+page_style()
 
 st.html("""
 <style>
