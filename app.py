@@ -55,6 +55,12 @@ with text_col:
         "dashboards and other tools around them."
     )
 
+    st.markdown(
+        "[LinkedIn ↗](https://www.linkedin.com/in/duarteneves)"
+        "&nbsp;&nbsp;&nbsp;&nbsp;"
+        "[GitHub ↗](https://github.com/nevesdme/career-cv)"
+    )
+
 with photo_col:
     st.image("extra_files/IMG_2520.jpg", width=220)
 
