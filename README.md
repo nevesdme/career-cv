@@ -2,7 +2,7 @@
 
 My CV, built as a small data project. Instead of writing my experience, skills and education directly into a webpage, I stored them as tables in an Azure SQL database. Python reads the data and Streamlit turns it into a website.
 
-Live version: coming soon.
+Live version: https://duarte-neves-cv.streamlit.app/
 
 ## How it works
 
