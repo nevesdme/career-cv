@@ -1,0 +1,3 @@
+libltdl7
+libkrb5-3
+libgssapi-krb5-2

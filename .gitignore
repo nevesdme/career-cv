@@ -19,5 +19,8 @@ exploration.ipynb
 
 *.deb
 
+# Streamlit secrets (database password)
+.streamlit/secrets.toml
+
 # Private notes
 extra_files/interactive-cv-summary_chatgpt.md

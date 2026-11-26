@@ -22,12 +22,10 @@ The code:
 
 ## Running it locally
 
-You need Python, the Microsoft ODBC Driver 18 for SQL Server and the Azure CLI.
-
 ```bash
 pip install -r requirements.txt
-az login
+cp .streamlit/secrets.toml.example .streamlit/secrets.toml   # then fill in the password
 streamlit run app.py
 ```
 
-The app connects to my own database, so it only works with an account that has access to it.
+The app connects to my own database with a read-only login, so it only works with the password for it.

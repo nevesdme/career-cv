@@ -1,36 +1,45 @@
 
-import struct
+import time
+
+import mssql_python
 import pandas as pd
-from azure.identity import AzureCliCredential
-from sqlalchemy import create_engine, event, text
+import streamlit as st
+from sqlalchemy import create_engine, text
+from sqlalchemy.exc import DBAPIError
 
 
-def get_engine():
-    connection_url = (
-        "mssql+pyodbc://@cvadmin.database.windows.net/"
-        "free-sql-db-4505384"
-        "?driver=ODBC+Driver+18+for+SQL+Server"
-        "&Encrypt=yes"
-        "&TrustServerCertificate=no"
+def connection_string():
+    # Read-only login, stored in .streamlit/secrets.toml locally
+    # and in the app's secrets on Streamlit Cloud
+    s = st.secrets["azure_sql"]
+    password = s["password"].replace("}", "}}")
+
+    return (
+        f"Server=tcp:{s['server']},1433;"
+        f"Database={s['database']};"
+        f"Uid={s['username']};"
+        f"Pwd={{{password}}};"
+        "Encrypt=yes;"
+        "TrustServerCertificate=no;"
     )
 
-    engine = create_engine(connection_url)
 
-    @event.listens_for(engine, "do_connect")
-    def add_azure_token(dialect, conn_rec, cargs, cparams):
-        cargs[0] = cargs[0].replace(";Trusted_Connection=Yes", "")
+def connect():
+    # Give the database up to 60 seconds to log in (it may be waking up)
+    login_timeout = mssql_python.constants.ConstantsDDBC.SQL_ATTR_LOGIN_TIMEOUT.value
+    return mssql_python.connect(
+        connection_string(),
+        attrs_before={login_timeout: 60},
+    )
 
-        credential = AzureCliCredential()
-        token = credential.get_token(
-            "https://database.windows.net/.default"
-        ).token
 
-        token_bytes = token.encode("utf-16-le")
-        token_struct = struct.pack("<I", len(token_bytes)) + token_bytes
-
-        cparams["attrs_before"] = {1256: token_struct}
-
-    return engine
+@st.cache_resource
+def get_engine():
+    return create_engine(
+        "mssql+mssqlpython://",
+        creator=connect,
+        pool_pre_ping=True,
+    )
 
 
 def load_table(table_name):
@@ -39,13 +48,18 @@ def load_table(table_name):
     if table_name not in allowed_tables:
         raise ValueError("Invalid table name")
 
-    engine = get_engine()
+    # The free database auto-pauses, so the first tries can fail
+    # while it wakes up
+    attempts = 3
 
-    with engine.connect() as conn:
-        df = pd.read_sql_query(
-            text(f"SELECT * FROM {table_name}"),
-            conn
-        )
-
-    engine.dispose()
-    return df
+    for attempt in range(1, attempts + 1):
+        try:
+            with get_engine().connect() as conn:
+                return pd.read_sql_query(
+                    text(f"SELECT * FROM {table_name}"),
+                    conn
+                )
+        except DBAPIError:
+            if attempt == attempts:
+                raise
+            time.sleep(10)
