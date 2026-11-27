@@ -1,0 +1,208 @@
+/* Same font as Streamlit */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap");
+
+/* Colours, taken from .streamlit/config.toml */
+:root {
+    --background: #101820;
+    --text: #F0F2F4;
+    --muted: #AAB7C4;
+    --caption: #8D98A3;
+    --accent: #8BB8E8;
+    --grey: #555555;
+    --grey-hover: #666666;
+    --line: #2E3A46;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: "Source Sans 3", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px 64px;
+}
+
+a {
+    color: var(--accent);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 32px 0;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+.caption {
+    color: var(--caption);
+    font-size: 14px;
+}
+
+/* Hero */
+
+.hero {
+    padding-top: 65px;
+}
+
+.eyebrow {
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 4vw, 48px);
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin: 0 0 24px;
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.lead {
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 650px;
+}
+
+/* About me: text on the left, photo on the right */
+
+.about {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 96px;
+    align-items: center;
+}
+
+.links a {
+    margin-right: 24px;
+}
+
+.photo {
+    width: 220px;
+    max-width: 100%;
+}
+
+/* On phones, put the photo under the text */
+@media (max-width: 700px) {
+    .about {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+/* Tabs */
+
+.tab-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    border-bottom: 1px solid var(--line);
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text);
+    font: inherit;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    border-bottom-color: var(--accent);
+    color: var(--accent);
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Boxes for experience and education */
+
+.box {
+    border: 2px solid var(--grey);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+}
+
+.box h3 {
+    margin: 0 0 4px;
+}
+
+.box p {
+    margin: 4px 0;
+}
+
+.box hr {
+    margin: 16px 0;
+}
+
+/* Grey buttons */
+
+.button {
+    display: inline-block;
+    background: var(--grey);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    margin: 8px 0 16px;
+}
+
+.button:hover {
+    background: var(--grey-hover);
+}
+
+/* Project pages */
+
+.back {
+    margin-top: 48px;
+}
+
+.project-title {
+    font-size: 40px;
+    margin: 16px 0 0;
+}
+
+/* Text uses about 3/4 of the width, like st.columns([3, 1]) */
+.project-text {
+    max-width: 75%;
+}
+
+.project-image {
+    display: block;
+    width: 1050px;
+    max-width: 100%;
+    margin: 32px 0;
+}
+
+/* On phones, use the full width */
+@media (max-width: 700px) {
+    .project-text {
+        max-width: 100%;
+    }
+}

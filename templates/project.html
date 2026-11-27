@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a class="button back" href="index.html#tabs">← Back to CV</a>
+
+<h1 class="project-title">{% block project_title %}{% endblock %}</h1>
+<p class="caption">{% block subtitle %}{% endblock %}</p>
+
+<hr>
+
+<div class="project-text">
+    {% block project_content %}{% endblock %}
+</div>
+
+<hr>
+
+<a class="button" href="index.html#tabs">← Back to CV</a>
+
+{% endblock %}

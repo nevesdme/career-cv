@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+    <p class="eyebrow">DATA ENGINEERING / ANALYTICS / DIGITAL SOLUTIONS</p>
+
+    <h1>
+        Turning data into<br>
+        practical solutions<span class="accent">.</span>
+    </h1>
+
+    <p class="lead">
+        Engineering background. Business perspective.
+        Building data platforms, analytics and digital tools
+        that solve real-world problems.
+    </p>
+</section>
+
+<section class="about">
+    <div class="about-text">
+        <p>
+            I spent 7 years at the biggest cable manufacturer in Portugal, planning
+            production lines and factories. In 2021 I moved to the Netherlands,
+            where I helped start the data team at a real estate developer and
+            did the technical data work: databases, Python ETL, Tableau
+            dashboards and other tools around them.
+        </p>
+
+        <p>
+            What I like most is the part before the data. Talking to people,
+            understanding how they work and what they actually need, and then
+            figuring out how to structure the data so it helps them. Most people
+            know what they want to see, but not how the data behind it should
+            look. That's where I come in.
+        </p>
+
+        <p>
+            I'm now looking for my next step, as an employee or as a freelancer,
+            somewhere I can help a company turn its information into something
+            people actually use.
+        </p>
+
+        <p class="links">
+            <a href="https://www.linkedin.com/in/duarteneves">LinkedIn ↗</a>
+            <a href="https://github.com/nevesdme/career-cv">GitHub ↗</a>
+        </p>
+    </div>
+
+    <img class="photo" src="images/IMG_2520.jpg" alt="Photo of Duarte Neves">
+</section>
+
+<hr>
+
+<section id="tabs" class="tabs">
+    <div class="tab-buttons">
+        <button class="tab-button active" data-tab="experience">💼 Experience & Projects</button>
+        <button class="tab-button" data-tab="skills">🛠️ Skills</button>
+        <button class="tab-button" data-tab="education">🎓 Education</button>
+    </div>
+
+    <div class="tab-panel active" id="experience">
+        <h2>Professional Experience</h2>
+
+        {% for job in experience %}
+        <div class="box">
+            <h3>{{ job.role }}</h3>
+            <p><strong>{{ job.company }}</strong></p>
+            <p class="caption">{{ job.start_year }} — {{ job.end_year }}</p>
+
+            {% if job.projects %}
+            <hr>
+            {% for project in job.projects %}
+            <p><strong>↗ {{ project.project }}</strong></p>
+            <p class="caption">{{ project.description }}</p>
+            {% if project.page %}
+            <a class="button" href="{{ project.page }}">View project →</a>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="tab-panel" id="skills">
+        <h2>Skills</h2>
+
+        {% for category, skill_list in skills.items() %}
+        <h3>{{ category }}</h3>
+        <p>{{ skill_list | join(" · ") }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="tab-panel" id="education">
+        <h2>Education</h2>
+
+        {% for degree in education %}
+        <div class="box">
+            <h3>{{ degree.institution }}</h3>
+            <p><strong>{{ degree.programme }}</strong></p>
+            <p class="caption">{{ degree.start_year }} – {{ degree.end_year }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    // Show the clicked tab and hide the others
+    document.querySelectorAll(".tab-button").forEach((button) => {
+        button.addEventListener("click", () => {
+            document.querySelectorAll(".tab-button, .tab-panel").forEach((el) => {
+                el.classList.remove("active");
+            });
+            button.classList.add("active");
+            document.getElementById(button.dataset.tab).classList.add("active");
+        });
+    });
+</script>
+
+{% endblock %}

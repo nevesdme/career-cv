@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Interactive CV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page">
+        
+
+<section class="hero">
+    <p class="eyebrow">DATA ENGINEERING / ANALYTICS / DIGITAL SOLUTIONS</p>
+
+    <h1>
+        Turning data into<br>
+        practical solutions<span class="accent">.</span>
+    </h1>
+
+    <p class="lead">
+        Engineering background. Business perspective.
+        Building data platforms, analytics and digital tools
+        that solve real-world problems.
+    </p>
+</section>
+
+<section class="about">
+    <div class="about-text">
+        <p>
+            I spent 7 years at the biggest cable manufacturer in Portugal, planning
+            production lines and factories. In 2021 I moved to the Netherlands,
+            where I helped start the data team at a real estate developer and
+            did the technical data work: databases, Python ETL, Tableau
+            dashboards and other tools around them.
+        </p>
+
+        <p>
+            What I like most is the part before the data. Talking to people,
+            understanding how they work and what they actually need, and then
+            figuring out how to structure the data so it helps them. Most people
+            know what they want to see, but not how the data behind it should
+            look. That's where I come in.
+        </p>
+
+        <p>
+            I'm now looking for my next step, as an employee or as a freelancer,
+            somewhere I can help a company turn its information into something
+            people actually use.
+        </p>
+
+        <p class="links">
+            <a href="https://www.linkedin.com/in/duarteneves">LinkedIn ↗</a>
+            <a href="https://github.com/nevesdme/career-cv">GitHub ↗</a>
+        </p>
+    </div>
+
+    <img class="photo" src="images/IMG_2520.jpg" alt="Photo of Duarte Neves">
+</section>
+
+<hr>
+
+<section id="tabs" class="tabs">
+    <div class="tab-buttons">
+        <button class="tab-button active" data-tab="experience">💼 Experience & Projects</button>
+        <button class="tab-button" data-tab="skills">🛠️ Skills</button>
+        <button class="tab-button" data-tab="education">🎓 Education</button>
+    </div>
+
+    <div class="tab-panel active" id="experience">
+        <h2>Professional Experience</h2>
+
+        
+        <div class="box">
+            <h3>Data Engineer | Data &amp; Digital Solutions</h3>
+            <p><strong>VanWonen</strong></p>
+            <p class="caption">2022 — 2026</p>
+
+            
+            <hr>
+            
+            <p><strong>↗ Analytical Database</strong></p>
+            <p class="caption">Consolidating business data using Python and SQL</p>
+            
+            <a class="button" href="analytical_database.html">View project →</a>
+            
+            
+            <p><strong>↗ Tableau Dashboards</strong></p>
+            <p class="caption">Developing dashboards for portfolio and financial analysis</p>
+            
+            <a class="button" href="tableau_dashboards.html">View project →</a>
+            
+            
+            <p><strong>↗ Digital Solutions</strong></p>
+            <p class="caption">Supporting the development of internal digital tools</p>
+            
+            <a class="button" href="techportal.html">View project →</a>
+            
+            
+            
+        </div>
+        
+        <div class="box">
+            <h3>Group Production Planning</h3>
+            <p><strong>Cabelte</strong></p>
+            <p class="caption">2018 — 2021</p>
+
+            
+            <hr>
+            
+            <p><strong>↗ Production Planning</strong></p>
+            <p class="caption">Planning production across three factories</p>
+            
+            
+            
+        </div>
+        
+        <div class="box">
+            <h3>Industrial Management</h3>
+            <p><strong>Cabelte</strong></p>
+            <p class="caption">2014 — 2018</p>
+
+            
+        </div>
+        
+        <div class="box">
+            <h3>Engineering Intern</h3>
+            <p><strong>Galp Energia</strong></p>
+            <p class="caption">2013 — 2013</p>
+
+            
+            <hr>
+            
+            <p><strong>↗ Energy Forecasting</strong></p>
+            <p class="caption">Forecasting electricity and steam consumption</p>
+            
+            
+            
+        </div>
+        
+    </div>
+
+    <div class="tab-panel" id="skills">
+        <h2>Skills</h2>
+
+        
+        <h3>Business</h3>
+        <p>Business Analysis · Requirements gathering · Real estate business cases · Budget vs actual cost analysis · Working with external software companies</p>
+        
+        <h3>Business Intelligence</h3>
+        <p>Tableau · Dashboard design · Data visualisation</p>
+        
+        <h3>Data Engineering</h3>
+        <p>ETL · Data Modelling · API Integration · Data warehousing · ERP integration (Microsoft Business Central) · Automated data updates (scheduled scripts) · Data cleaning and transformation</p>
+        
+        <h3>Databases</h3>
+        <p>SQL · MySQL · PostgreSQL · Microsoft SQL Server · Azure SQL</p>
+        
+        <h3>Geospatial</h3>
+        <p>PostGIS &amp; Spatial Data · GIS · Map dashboards in Tableau</p>
+        
+        <h3>Operations</h3>
+        <p>Production Planning · Industrial management · Forecasting</p>
+        
+        <h3>Programming</h3>
+        <p>Python · Git</p>
+        
+    </div>
+
+    <div class="tab-panel" id="education">
+        <h2>Education</h2>
+
+        
+        <div class="box">
+            <h3>Porto Business School</h3>
+            <p><strong>Postgraduate in Business Intelligence &amp; Data Analytics</strong></p>
+            <p class="caption">2021 – 2022</p>
+        </div>
+        
+        <div class="box">
+            <h3>University of Porto (FEUP)</h3>
+            <p><strong>Master&#39;s, Electrical and Computer Engineering</strong></p>
+            <p class="caption">2008 – 2013</p>
+        </div>
+        
+    </div>
+</section>
+
+<script>
+    // Show the clicked tab and hide the others
+    document.querySelectorAll(".tab-button").forEach((button) => {
+        button.addEventListener("click", () => {
+            document.querySelectorAll(".tab-button, .tab-panel").forEach((el) => {
+                el.classList.remove("active");
+            });
+            button.classList.add("active");
+            document.getElementById(button.dataset.tab).classList.add("active");
+        });
+    });
+</script>
+
+
+    </main>
+</body>
+</html>
