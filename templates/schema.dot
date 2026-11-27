@@ -1,0 +1,26 @@
+digraph {
+    graph [bgcolor="transparent", rankdir="LR"]
+    node [shape="record", style="rounded,filled",
+          fillcolor="#192530", color="#526579",
+          fontcolor="#F0F2F4", fontname="Helvetica", fontsize=10,
+          width=2]
+    edge [color="#8BB8E8", fontname="Helvetica", fontsize=10]
+
+    experience [
+        label="{experience|id (PK)\lcompany\lrole\lstart_year\lend_year\l}"
+    ]
+
+    projects [
+        label="{projects|id (PK)\lexperience_id (FK)\lproject\ldescription\l}"
+    ]
+
+    education [
+        label="{education|id (PK)\linstitution\lprogramme\lstart_year\lend_year\l}"
+    ]
+
+    skills [
+        label="{skills|id (PK)\lskill\lcategory\l}"
+    ]
+
+    experience -> projects [label="1 to many", fontcolor="#8BB8E8"]
+}

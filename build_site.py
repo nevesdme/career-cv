@@ -5,6 +5,7 @@ The finished site is written to the docs/ folder.
 """
 
 import shutil
+import subprocess
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
@@ -80,6 +81,12 @@ def build():
     for page in PROJECT_PAGES.values():
         html = env.get_template(page).render()
         (OUTPUT_DIR / page).write_text(html, encoding="utf-8")
+
+    # Draw the database diagram as an SVG image (needs Graphviz installed)
+    subprocess.run(
+        ["dot", "-Tsvg", TEMPLATES_DIR / "schema.dot", "-o", OUTPUT_DIR / "schema.svg"],
+        check=True,
+    )
 
     shutil.copy(TEMPLATES_DIR / "style.css", OUTPUT_DIR / "style.css")
     shutil.copy("extra_files/IMG_2520.jpg", OUTPUT_DIR / "images" / "IMG_2520.jpg")

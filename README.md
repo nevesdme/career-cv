@@ -41,7 +41,7 @@ pip install -r requirements.txt
 cp .streamlit/secrets.toml.example .streamlit/secrets.toml   # then fill in the password
 ```
 
-Build the static site:
+Build the static site (needs [Graphviz](https://graphviz.org/) for the database diagram, `sudo apt install graphviz` on Ubuntu):
 
 ```bash
 python build_site.py
