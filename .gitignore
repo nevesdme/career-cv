@@ -17,6 +17,9 @@ exploration.ipynb
 # Editor settings
 .vscode/
 
+# Local Claude Code settings
+.claude/
+
 *.deb
 
 # Streamlit secrets (database password)
