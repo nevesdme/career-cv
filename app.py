@@ -3,7 +3,8 @@ import streamlit.components.v1 as st_components
 from database import load_table
 from components import page_style
 
-@st.cache_data(ttl=600)
+# Keep the data for 1 day, so the database wakes up less often
+@st.cache_data(ttl=86400)
 def get_cv_data(table_name):
     return load_table(table_name)
 
